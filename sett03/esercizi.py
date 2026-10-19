@@ -10,10 +10,10 @@ with open("appunti.txt", "r", encoding="utf-8") as f:
     for numero, riga in enumerate(f, start=1):
         print(numero, riga.strip())
 
-ES 2
+#ES 2
 
 
- def conta_righe(nome_file):
+def conta_righe(nome_file):
     totali = 0
     piene = 0
     with open(nome_file, "r", encoding="utf-8") as f:
@@ -27,7 +27,7 @@ for nome in ["dati/parole.txt", "dati/commedia.txt"]:
     tot, piene = conta_righe(nome)
     print(f"{nome}: {tot} righe, {piene} non vuote")
 
-ES 3 
+#ES 3 
 
 def parola_piu_lunga(nome_file):
     migliore = ""
@@ -43,11 +43,28 @@ p = parola_piu_lunga("dati/commedia.txt")
 print(p, "-", len(p), "lettere")
 
 
-ES 4
+#ES 4
+
+import csv
+
+def prezzo_medio(nome_file, alimentazione):
+    somma = 0
+    quante = 0
+    with open(nome_file, "r", encoding="utf-8", newline="") as f:
+        for auto in csv.DictReader(f):
+            if auto["Fuel type"] == alimentazione:
+                somma += int(auto["Price"])
+                quante += 1
+    if quante == 0:
+        return None
+    return round(somma / quante, 2)
+
+for tipo in ["Petrol", "Diesel", "Hybrid", "Elettrica"]:
+    print(tipo, "->", prezzo_medio("dati/car_sales_data.csv", tipo))
 
 
 
-es 5 
+#es 5 
 
 
 def filtra(origine, destinazione, marca, anno_minimo):
